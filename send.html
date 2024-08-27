@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إرسال رسالة</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="images/Capture.PNG">
+</head>
+<body>
+    <div class="container">
+        <div id="loginSection">
+            <h1>تسجيل الدخول</h1>
+            <!-- تسجيل الدخول التقليدي -->
+            <input type="text" id="loginUsername" placeholder="أدخل اسمك" required>
+            <button id="loginButton">تسجيل الدخول</button>
+            <p>أو</p>
+            <!-- تسجيل الدخول عبر فيسبوك -->
+            <button id="facebookLoginButton">تسجيل الدخول عبر فيسبوك</button>
+        </div>
+
+        <div id="messageSection" style="display: none;">
+            <div class="questions-section">
+                <h3>أسئلة</h3>
+                <div class="question-group">
+                    <p>ما رأيك في الخدمة؟</p> 
+                    <label>
+                        <input type="radio" name="question1" value="ممتاز"> ممتاز
+                    </label><br/>
+                    <label>
+                        <input type="radio" name="question1" value="جيد"> جيد
+                    </label><br/>
+                    <label>
+                        <input type="radio" name="question1" value="متوسط"> متوسط
+                    </label>
+                    <textarea id="note1" placeholder="ملاحظة"></textarea>
+                </div>
+                <div class="question-group">
+                    <p>هل تنصح بالخدمة لآخرين؟</p>
+                    <label>
+                        <input type="radio" name="question2" value="نعم"> نعم
+                    </label><br/>
+                    <label>
+                        <input type="radio" name="question2" value="لا"> لا
+                    </label><br/>
+                    <textarea id="note2" placeholder="ملاحظة"></textarea><br/>
+                </div>
+            </div>
+            <h2>إرسال رسالة</h2>
+            <textarea id="messageInput" placeholder="اكتب رسالتك هنا..."></textarea>
+            <label class="checkbox-container">
+                <input type="checkbox" id="showUserCheckbox">
+                <span class="checkmark"></span>
+                أظهر اسمي
+            </label>
+            <button id="sendMessageButton">إرسال</button>
+        </div>
+
+        <p id="status"></p>
+    </div>
+
+    <!-- Facebook SDK -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '780806017339305', 
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v12.0'
+        });
+
+        FB.AppEvents.logPageView();   
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="js/send.js"></script>
+</body>
+</html>
